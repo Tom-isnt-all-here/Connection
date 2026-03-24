@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connection – Not Made Yet 😂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      background-color: #000000;
+      color: #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      border: 2px dashed #00ff9f;
+      border-radius: 12px;
+      box-shadow:
+        0 0 20px #00ff9f80,
+        inset 0 0 40px #00ff9f40;
+      user-select: none;
+      animation: flickerGlow 3s infinite alternate ease-in-out;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow:
+        0 0 10px #00ff9f,
+        0 0 20px #00ff9f;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      color: #00ffa3;
+      text-shadow: 0 0 6px #00ffa3;
+    }
+    .emoji {
+      font-size: 5rem;
+      animation: bounce 2s infinite;
+      user-select: none;
+      margin-bottom: 1rem;
+    }
+    button {
+      background: transparent;
+      border: 2px solid #00ff9f;
+      border-radius: 8px;
+      color: #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ff9f80;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    button:hover, button:focus {
+      background-color: #00ff9f;
+      color: #000000;
+      outline: none;
+      box-shadow: 0 0 20px #00ff9fff;
+    }
+    @keyframes flickerGlow {
+      0% { box-shadow: 0 0 10px #00ff9f80; }
+      50% { box-shadow: 0 0 30px #00ff9fff; }
+      100% { box-shadow: 0 0 10px #00ff9f80; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-live="polite" aria-label="Comedic not made yet page">
+    <div class="emoji" aria-hidden="true">🤖💥</div>
+    <h1>Oops! This Page is Not Made Yet</h1>
+    <p>Looks like our robots got distracted and forgot to build this page. Please check back later!</p>
+    <button onclick="document.location = 'media.html'">Go back</button>
+  </div>
+</body>
+</html>

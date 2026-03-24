@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="b-reith-sans-font">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connection – Radio Soap Opera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html,body { margin:0; padding:0; height:100%; background:#000; color:#00ff9f; font-family:'Share Tech Mono', monospace; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    a { color:inherit; text-decoration:none; }
+    a:hover, a:focus { text-decoration:underline; outline:none; }
+    .container { max-width:1140px; margin:0 auto; padding:0 1rem; width:100%; }
+    header {
+      background-color: #080a08;
+      border-bottom: 1px solid #00331f;
+    }
+    nav.orb-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+    }
+    .orb-logo {
+      display: flex;
+      align-items: center;
+    }
+    .orb-logo h1 {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #00ff9f;
+      user-select: none;
+      text-shadow:
+        0 0 8px #00ff9f,
+        0 0 20px #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      position: relative;
+      animation: flickerGlitchNav 3s infinite ease-in-out;
+    }
+    @keyframes flickerGlitchNav {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 8px #00ff9f,
+          0 0 20px #00ff9f;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.6;
+        text-shadow:
+          0 0 4px #00331f,
+          0 0 10px #00331f;
+      }
+    }
+
+    .orb-buttons {
+      display:flex; gap:1rem;
+    }
+    .orb-btn {
+      background-color: transparent;
+      border: 2px solid #00ff9f;
+      border-radius: 4px;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #00ff9f;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 8px #00ff9f80;
+    }
+    .orb-btn:hover,
+    .orb-btn:focus {
+      background-color: #00ff9f;
+      color: #000000;
+      outline: none;
+      border-color: #00ff9f;
+      box-shadow: 0 0 14px #00ff9fff;
+    }
+    header::before {
+      content:''; position:fixed; top:0; left:0; right:0; height:180px;
+      background-image:url('images/MAIN.png'); background-size:cover; background-position:center top;
+      opacity:0.12; pointer-events:none; z-index:120;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0)); -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    }
+
+    .hero { position:relative; min-height:420px; display:flex; align-items:center; justify-content:center; padding:2.25rem 2rem; gap:2rem; overflow:hidden; }
+    .hero-bg-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5; filter:grayscale(60%) contrast(120%) brightness(80%); z-index:0; pointer-events:none; }
+    .hero-inner { position:relative; z-index:2; text-align:center; }
+    .hero-title {
+      margin:0; font-size: clamp(3rem, 7vw, 4.8rem); font-weight:900; letter-spacing:0.28em; color:#00ff9f;
+      text-shadow: 0 0 16px #00ff9f, 0 0 32px #00ff9f; position:relative;
+    }
+    .hero-title::before,
+    .hero-title::after {
+      content:'CONNECTION';
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:100%; opacity:0.12; color:#00ff9f; pointer-events:none; mix-blend-mode:screen;
+      z-index: 0;
+    }
+    .hero-title::before { clip-path:polygon(0 0,100% 0,100% 25%,0 25%); animation:glitchTop 2s infinite linear alternate; }
+    .hero-title::after  { clip-path:polygon(0 75%,100% 75%,100% 100%,0 100%); animation:glitchBottom 2.5s infinite linear alternate-reverse; }
+    .hero-audio-wrapper { margin-top:1rem; display:flex; justify-content:center; gap:1rem; }
+    #hero-audio-btn { display:inline-flex; align-items:center; gap:0.6rem; border:2px solid #00ff9f; border-radius:6px; padding:0.6rem 1.2rem; background:transparent; color:#00ff9f; cursor:pointer; font-weight:700; }
+    #hero-audio-btn:hover, #hero-audio-btn:focus { background:#00ff9f; color:#000; outline:none; }
+    main {
+      background:#080a08; padding:3.25rem 2rem 4rem; margin:2rem auto; max-width:1140px; border-radius:14px;
+      box-shadow:0 0 35px #00ff9f80, inset 0 0 60px #00ff9f30;
+      display:flex; gap:2.5rem; flex-wrap:nowrap; align-items:flex-start; position:relative;
+    }
+    section.description { flex:1 1 480px; min-width:300px; padding:2rem; border-radius:12px; border:1.5px solid #00ff9f; background:#080a08; box-shadow:inset 0 0 40px #00ff9f20; }
+    section.description h2 { font-size:2.1rem; margin:0 0 1rem; border-left:5px solid #00ff9f; padding-left:1rem; color:#00ffa3; }
+    section.description p { font-size:1.15rem; line-height:1.7; color:#00ffbbdd; margin:0; }
+    .fanbase-list {
+      flex: 1 1 420px;
+      min-width: 300px;
+      border-radius: 12px;
+      border: 1.5px solid #00ff9f;
+      background: linear-gradient(180deg,#00140b 0%, #001a0d 100%);
+      box-shadow: inset 0 0 40px #00ff9f20;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 1rem 1.5rem;
+    }
+    .fanbase-list h2 {
+      font-size: 1.95rem;
+      margin: 0 0 1rem 0;
+      color: #00ff9f;
+      text-shadow: 0 0 12px #00ff9f;
+    }
+    .fanbase-item {
+      background: rgba(0,20,10,0.18);
+      border: 1px solid rgba(0,255,159,0.06);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 18px rgba(0,255,159,0.03);
+      color: #00ffbbdd;
+    }
+    .fanbase-item:last-child {
+      margin-bottom: 0;
+    }
+    .fanbase-item h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00ff9f;
+      text-shadow: 0 0 10px #00ff9f;
+    }
+    .fanbase-item p {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(0, 255, 163, 0.2);
+    }
+    .news {
+      max-width: 1140px;
+      margin: 2rem auto 4rem;
+      border-radius: 12px;
+      border: 1.5px solid #00ff9f;
+      box-shadow: inset 0 0 40px #00ff9f20;
+      background: linear-gradient(180deg,#00140b 0%, #001a0d 100%);
+      padding: 1.5rem 2rem;
+    }
+    .news h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #00ff9f;
+      text-shadow: 0 0 14px #00ff9f;
+      border-left: 5px solid #00ff9f;
+      padding-left: 1rem;
+    }
+    .news-item {
+      background: rgba(0,20,10,0.18);
+      border: 1px solid rgba(0,255,159,0.06);
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0,255,159,0.05);
+      color: #00ffbbdd;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .news-item:last-child {
+      margin-bottom: 0;
+    }
+    .news-item:hover, .news-item:focus-within {
+      box-shadow: 0 8px 30px rgba(0,255,159,0.2);
+      transform: translateY(-3px);
+      outline: none;
+    }
+    .news-item h3 {
+      margin: 0 0 0.6rem 0;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #00ff9f;
+      text-shadow: 0 0 12px #00ff9f;
+    }
+    .news-item p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #00ffbbdd;
+      text-shadow: 0 0 6px rgba(0, 255, 163, 0.3);
+    }
+    .social-panel {
+      position:fixed; left:18px; top:calc(50% - 90px); display:flex; flex-direction:column; gap:0.75rem; z-index:130;
+      background:rgba(0,0,0,0.35); padding:0.6rem; border-radius:10px; border:1px solid rgba(0,255,159,0.12); backdrop-filter:blur(4px);
+    }
+    .social-panel a { display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; border:2px solid #00ff9f; background:transparent; box-shadow:0 0 10px #00ff9f60; }
+    .social-panel a img { width:20px; height:20px; pointer-events:none; user-select:none; }
+    .social-panel a:hover, .social-panel a:focus { background:#00ff9f; color:#000; box-shadow:0 0 20px #00ff9fff; outline:none; }
+    .photo-reel {
+      margin-top: 2rem;
+      border-top: 1px solid rgba(0, 255, 159, 0.3);
+      padding-top: 1rem;
+    }
+    .reel-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: #00ff9f #080a08;
+    }
+    .reel-track::-webkit-scrollbar { height: 5px; }
+    .reel-track::-webkit-scrollbar-thumb { background: #00ff9f; border-radius: 10px; }
+    .reel-track img {
+      width: 180px;
+      height: 140px;
+      object-fit: cover;
+      border: 1.5px solid #00ff9f;
+      border-radius: 4px;
+      flex-shrink: 0;
+      opacity: 0.7;
+      filter: contrast(120%) brightness(0.8);
+      transition: all 0.3s ease;
+    }
+    .reel-track img:hover {
+      opacity: 1;
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #00ff9f;
+      filter: brightness(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Primary navigation">
+    <nav class="orb-nav container" aria-label="Top navigation">
+      <div class="orb-left">
+        <a href="#" aria-label="Go to Connection homepage" title="Connection home" class="orb-logo" tabindex="0">
+          <h1>CONNECTION</h1>
+        </a>
+      </div>
+      <div class="orb-buttons" role="menubar" aria-label="Primary top navigation buttons">
+        <button onclick="document.location = 'Media.html'" class="orb-btn" role="menuitem" tabindex="0" type="button">Home</button>
+        <button onclick="document.location = 'PNM.html'" class="orb-btn" role="menuitem" tabindex="0" type="button">Episodes</button>
+        <button onclick="document.location = 'Character.html'" class="orb-btn" role="menuitem" tabindex="0" type="button">Characters</button>
+        <button onclick="document.location = 'PNM.html'" class="orb-btn" role="menuitem" tabindex="0" type="button">About</button>
+      </div>
+    </nav>
+  </header>
+  <section class="hero" aria-label="Connection hero banner">
+    <img src="images/MAIN.png" alt="" class="hero-bg-img" draggable="false" aria-hidden="true" />
+    <div class="hero-inner" role="region" aria-label="Hero">
+      <h2 class="hero-title" tabindex="0">CONNECTION</h2>
+    </div>
+  </section>
+  <div class="social-panel" aria-label="Social links">
+    <a class="listen-small" href="https://www.bbc.co.uk/iplayer" target="_blank" rel="noopener noreferrer" aria-label="Watch on BBC Iplayer" title="Watch here">
+      ▶
+    </a>
+    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter">
+      <img src="images/X.png" alt="Twitter logo" />
+    </a>
+    <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+      <img src="images/FB.png" alt="Facebook logo" />
+    </a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+      <img src="images/insta.png" alt="Instagram logo" />
+    </a>
+  </div>
+  <main role="main" class="container" aria-labelledby="main-title">
+    <section class="description" aria-labelledby="about-title">
+      <h2 id="about-title">About Connection</h2>
+      <p tabindex="0">
+       Set in a Future Dystopian world. 
+       The Robots have taken over and humans are now the minority. 
+       The Team have to find a way to stop the invasion  and take control back once and for all done through fighting and teamwork. 
+      </p>
+      <div class="photo-reel" aria-label="Visual Archive">
+        <div class="reel-track">
+          <img src="images/P1.png" alt="Plan Comes Together">
+          <img src="images/P2.png" alt="">
+          <img src="images/P3.png" alt="Rebel Base">
+          <img src="images/P4.png" alt="Neon Skyline">
+        </div>
+      </div>
+    </section>
+
+    <section class="fanbase-list" aria-label="Fanbases list" tabindex="0">
+      <h2>Fanbases</h2>
+      <article class="fanbase-item" tabindex="0">
+        <h3>CyberRebels</h3>
+        <p>"Hack the future, own the present."</p>
+      </article>
+      <article class="fanbase-item" tabindex="0">
+        <h3>NeoHumans</h3>
+        <p>"Unity through evolution."</p>
+      </article>
+      <article class="fanbase-item" tabindex="0">
+        <h3>Steel Guardians</h3>
+        <p>"Strength in every alloy."</p>
+      </article>
+      <article class="fanbase-item" tabindex="0">
+        <h3>Quantum Dreamers</h3>
+        <p>"Beyond time, beyond limits."</p>
+      </article>
+    </section>
+  </main>
+
+  <section class="news" aria-labelledby="news-section-title" tabindex="0">
+    <h2 id="news-section-title">Latest News</h2>
+    <article class="news-item" tabindex="0">
+      <h3>Galactic Alliance Forms New Peace Treaty - The Far Future</h3>
+      <p>After decades of conflict, the Galactic Alliance has signed a historic peace treaty promising cooperation and shared technology between planets in the sector. Leaders hope this marks a new era of prosperity.</p>
+    </article>
+    <article class="news-item" tabindex="0">
+      <h3>NEW SEASON COMING SOON - 3.5.25</h3>
+      <p>The Show has been renewed for yet another season. New characters and more emotion as the robots edge closer to finiding the crew. Coming Feb 30th </p>
+    </article>
+    <article class="news-item" tabindex="0">
+      <h3>Starship Explorer Discovers Mysterious Signal - The Far Future</h3>
+      <p>While on a routine mission, the starship Explorer detected an unknown signal emanating from a nearby uncharted system. Scientists are analyzing the data to determine if it’s of natural or intelligent origin.</p>
+    </article>
+    <article class="news-item" tabindex= "0">
+      <h3>BLOOPER REEL - 28.4.25</h3>
+      <p> New blooper reel from previous seasons will be uploaded to instagram all this week to celebrate another season (Release date coming soon)</p>
+    </article>
+  </section>
+<footer role="contentinfo" aria-label="Footer" style="background:#000; padding:0.5rem 0;">
+  <div style="display:flex;align-items:center;justify-content:center;position:relative;width:100%;">
+
+    <a href="https://www.bbc.co.uk/bbctwo" style="position:absolute;left:1rem;display:inline-block;margin:20px;">
+      <img src="images/BBC2.svg" alt="BBC2" style="width:150px;height:auto;">
+    </a>
+
+    <p style="margin:0;font-weight:700;letter-spacing:0.12em;color:#00ff9f;text-align:center;font-size:0.9rem;">
+      &copy; 2025 Connection Radio Soap Opera. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+

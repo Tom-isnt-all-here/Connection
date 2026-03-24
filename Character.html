@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="b-reith-sans-font">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connection – Characters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Share Tech Mono', monospace;
+      background-color: #000000;
+      color: #00ff9f;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a {
+      color: #00ff9f;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    } 
+    .container-footer {
+    max-width:1140px; 
+    margin:0 auto; 
+    padding:0 1rem; 
+    width:100%; 
+    } 
+    header {
+      background-color: #080a08;
+      border-bottom: 1px solid #00331f;
+    }
+    nav.orb-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+    }
+    .orb-logo {
+      display: flex;
+      align-items: center;
+    }
+    .orb-logo h1 {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #00ff9f;
+      user-select: none;
+      text-shadow:
+        0 0 8px #00ff9f,
+        0 0 20px #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      position: relative;
+      animation: flickerGlitchNav 3s infinite ease-in-out;
+    }
+    @keyframes flickerGlitchNav {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 8px #00ff9f,
+          0 0 20px #00ff9f;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.6;
+        text-shadow:
+          0 0 4px #00331f,
+          0 0 10px #00331f;
+      }
+    }
+    .orb-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    .orb-btn {
+      background-color: transparent;
+      border: 2px solid #00ff9f;
+      border-radius: 4px;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #00ff9f;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 8px #00ff9f80;
+    }
+    .orb-btn:hover,
+    .orb-btn:focus {
+      background-color: #00ff9f;
+      color: #000000;
+      outline: none;
+      border-color: #00ff9f;
+      box-shadow: 0 0 14px #00ff9fff;
+    }
+    .characters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 3rem 1rem 5rem;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .character-card {
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: visible;
+      box-shadow:
+        0 0 20px #00ff9f80,
+        inset 0 0 30px #00ff9f40;
+      transition: transform 0.3s ease;
+    }
+    .character-card:hover,
+    .character-card:focus-within {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+    .character-img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      user-select: none;
+      pointer-events: none;
+      filter: brightness(0.85);
+      transition: filter 0.3s ease;
+    }
+    .hero-title::before { clip-path:polygon(0 0,100% 0,100% 25%,0 25%); animation:glitchTop 2s infinite linear alternate; }
+    .hero-title::after  { clip-path:polygon(0 75%,100% 75%,100% 100%,0 100%); animation:glitchBottom 2.5s infinite linear alternate-reverse; }
+    .hero-audio-wrapper { margin-top:1rem; display:flex; justify-content:center; gap:1rem; }
+    #hero-audio-btn { display:inline-flex; align-items:center; gap:0.6rem; border:2px solid #00ff9f; border-radius:6px; padding:0.6rem 1.2rem; background:transparent; color:#00ff9f; cursor:pointer; font-weight:700; }
+    #hero-audio-btn:hover, #hero-audio-btn:focus { background:#00ff9f; color:#000; outline:none; }
+    .character-card:hover .character-img,
+    .character-card:focus-within .character-img {
+      filter: brightness(1);
+    }
+    .info-panel {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translate(-50%, 110%);
+      width: 90%;
+      background: rgba(0, 255, 159, 0.15);
+      border: 1px solid #00ff9f;
+      border-radius: 12px;
+      padding: 1rem;
+      color: #00ff9f;
+      font-size: 0.9rem;
+      line-height: 1.3;
+      box-shadow:
+        0 0 25px #00ff9fcc,
+        inset 0 0 40px #00ff9f80;
+      opacity: 0;
+      pointer-events: none;
+      user-select: text;
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+      font-family: 'Share Tech Mono', monospace;
+      backdrop-filter: saturate(180%) blur(10px);
+      text-shadow:
+        0 0 6px #00ff9f,
+        0 0 12px #00ffa3;
+      z-index: 10;
+    }
+    .character-card:hover .info-panel,
+    .character-card:focus-within .info-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+      box-shadow:
+        0 0 40px #00ff9fff,
+        inset 0 0 60px #00ffafcc;
+      animation: popoutGlow 1.5s ease forwards;
+    }
+    @keyframes popoutGlow {
+      0% {
+        box-shadow:
+          0 0 20px #00ff9f80,
+          inset 0 0 40px #00ff9f40;
+      }
+      50% {
+        box-shadow:
+          0 0 48px #00ff9fff,
+          inset 0 0 70px #00ffafcc;
+      }
+      100% {
+        box-shadow:
+          0 0 40px #00ff9fff,
+          inset 0 0 60px #00ffafcc;
+      }
+    }
+    .info-panel h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #00ffb7;
+      text-shadow:
+        0 0 8px #00ffb7,
+        0 0 16px #00ffb7;
+      letter-spacing: 0.06em;
+    }
+    @media (max-width: 720px) {
+      .characters-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem 1rem 4rem;
+      }
+      .info-panel {
+        font-size: 0.85rem;
+        padding: 0.85rem;
+      }
+      .info-panel h3 {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .characters-grid {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem 3rem;
+      }
+      .info-panel {
+        font-size: 0.85rem;
+        padding: 0.7rem;
+      }
+      .info-panel h3 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Primary navigation">
+    <nav class="orb-nav container">
+      <a href="Media.html" aria-label="Connection homepage" class="orb-logo" tabindex="0">
+        <h1>CONNECTION</h1>
+      </a>
+       <div class="orb-buttons" role="menubar" aria-label="Primary top navigation buttons">
+        <button onclick="document.location = 'Media.html'"class= "orb-btn" role="menuitem" tabindex="0" type="button">Home</button>
+        <button onclick="document.location = 'PNM.html'"class="orb-btn" role="menuitem" tabindex="0" type="button">Episodes</button>
+        <button onclick="document.location = 'Character.html' " class="orb-btn" role="menuitem" tabindex="0" type="button">Characters</button>
+        <button onclick="document.location = 'PNM.html'"class="orb-btn" role="menuitem" tabindex="0" type="button">About</button>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container" aria-label="Characters list">
+    <div class="characters-grid" tabindex="0">
+      <article class="character-card" tabindex="0" aria-labelledby="char1-name" aria-describedby="char1-desc">
+        <img src="images/owen.jpeg" alt="Portrait of Owen" class="character-img" />
+        <div class="info-panel" role="region" aria-live="polite" aria-atomic="true">
+          <h3 id="Owen">Owen</h3>
+          <p id="Owen-desc">
+            Leader of the Robot Evolution, he is a veteran with years of experience guiding his robotic followers. He acts brave around the team but is really still a little boy at heart.
+          </p>
+        </div>
+      </article>
+      <article class="character-card" tabindex="0" aria-labelledby="char3-name" aria-describedby="char3-desc">
+        <img src="images/Max.jpeg" alt="Photo of Max" class="character-img" />
+        <div class="info-panel" role="region" aria-live="polite" aria-atomic="true">
+          <h3 id="Archie">Max</h3>
+          <p id=" Max-desc">
+            is recovering from the lack of internet due to him being "Chronically online". He is always seen with his head in a device seen to be messing around but is that the case?
+          </p>
+        </div>
+      </article>
+      <article class="character-card" tabindex="0" aria-labelledby="char4-name" aria-describedby="char4-desc">
+        <img src="images/Blake.jpeg" alt="Portrait of Mira" class="character-img" />
+        <div class="info-panel" role="region" aria-live="polite" aria-atomic="true">
+          <h3 id="Blake-name">Blake</h3>
+          <p id="Blake-desc">
+            Has been expecting this since the invention of the computer.  Has weapons he has designed which the robots find ways to dodge or deflect meaning both sides are slowly evolving. 
+          </p>
+        </div>
+      </article>
+      <article class="character-card" tabindex="0" aria-labelledby="char2-name" aria-describedby="char2-desc">
+        <img src="images/AGENT.jpg" alt="MISSSING 404" class="character-img" />
+        <div class="info-panel" role="region" aria-live="polite" aria-atomic="true">
+          <h3 id="AGENT-name">Max Dawson </h3>
+          <p id="AGENT-desc">
+            Never seen in show - Left his final message on the system before being killed. 
+            <section class="hero" aria-label="Connection hero banner">
+      <div class="hero-audio-wrapper" role="region" aria-label="Hero audio">
+        <button id="hero-audio-btn" type="button" aria-pressed="false" aria-label="Play">
+          <span id="hero-audio-btn-text">▶ Listen to his last words</span>
+        </button>
+      </div>
+      <audio id="hero-audio" preload="metadata" style="display:none;">
+        <source src="images/David.m4a" type="audio/mpeg" />
+      </audio>
+    </div>
+  </section>
+           
+          </p>
+        </div>
+      </article>
+    </div>
+  </main>
+   <footer role="contentinfo" aria-label="Footer">
+    <div class="container-footer" style="display:flex; align-items:center; justify-content:center; padding:0.8rem 1rem;">
+      <p style="margin:0; font-weight:700; letter-spacing:0.12em; color:#00ff9f;">&copy; 2025 Connection Radio Soap Opera. All rights reserved.</p>
+    </div>
+  </footer>
+    <script>
+    // Audio toggle - helped with by AI
+    const audioBtn = document.getElementById('hero-audio-btn');
+    const audio = document.getElementById('hero-audio');
+    const btnText = document.getElementById('hero-audio-btn-text');
+    if (audioBtn && audio && btnText) {
+      audioBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          btnText.textContent = 'Pause trailer';
+          audioBtn.setAttribute('aria-pressed', 'true');
+        } else {
+          audio.pause();
+          btnText.textContent = 'Listen to the trailer';
+          audioBtn.setAttribute('aria-pressed', 'false');
+        }
+      });
+      audio.addEventListener('ended', () => {
+        btnText.textContent = 'Listen to the trailer';
+        audioBtn.setAttribute('aria-pressed', 'false');
+      });
+    }
+  </script>
+</body>
+</html>
